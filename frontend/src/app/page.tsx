@@ -60,7 +60,7 @@ export default function Home() {
                 Features
               </a>
               <Link
-                href="/corridors"
+                href="/corridors/"
                 className="text-sm font-medium hover:text-blue-500"
               >
                 Corridors
@@ -141,7 +141,7 @@ export default function Home() {
                 Features
               </a>
               <Link
-                href="/corridors"
+                href="/corridors/"
                 className="block text-sm font-medium hover:text-blue-500"
               >
                 Corridors

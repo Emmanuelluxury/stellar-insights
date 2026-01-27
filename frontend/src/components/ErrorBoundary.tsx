@@ -1,6 +1,7 @@
 "use client"
 
 import React, { Component, ErrorInfo, ReactNode } from "react"
+import Link from "next/link"
 import { AlertTriangle, RefreshCw, Home } from "lucide-react"
 import Link from "next/link"
 
@@ -64,7 +65,7 @@ export class ErrorBoundary extends Component<Props, State> {
         <div className="min-h-screen bg-gray-50 dark:bg-slate-950 flex items-center justify-center p-4">
           <div className="max-w-2xl w-full bg-white dark:bg-slate-800 rounded-lg shadow-lg border border-gray-200 dark:border-slate-700 p-8">
             <div className="flex items-center gap-4 mb-6">
-              <div className="flex-shrink-0">
+              <div className="shrink-0">
                 <AlertTriangle className="w-12 h-12 text-rose-500" />
               </div>
               <div>

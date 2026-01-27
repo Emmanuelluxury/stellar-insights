@@ -8,6 +8,7 @@ import {
     YAxis,
     CartesianGrid,
     Tooltip,
+    TooltipProps,
     ResponsiveContainer
 } from 'recharts';
 import { ReliabilityDataPoint } from '@/lib/api';
@@ -20,13 +21,13 @@ interface ReliabilityTrendProps {
 
 type TimeWindow = '7d' | '30d' | '90d';
 
-const CustomTooltip = ({ active, payload, label }: TooltipProps<ValueType, NameType>) => {
+const CustomTooltip = ({ active, payload, label }: TooltipProps<number, string>) => {
     if (active && payload && payload.length) {
         return (
             <div className="bg-slate-900 border border-slate-700 p-3 rounded-lg shadow-xl">
                 <p className="text-slate-400 text-xs mb-1">{label}</p>
                 <p className="text-emerald-400 font-bold text-sm">
-                    Score: {typeof payload[0].value === 'number' ? payload[0].value.toFixed(1) : payload[0].value}
+                    Score: {payload[0].value?.toFixed(1) ?? 'N/A'}
                 </p>
             </div>
         );
@@ -104,7 +105,7 @@ export function ReliabilityTrend({ data }: ReliabilityTrendProps) {
                             axisLine={false}
                             tickMargin={10}
                         />
-                        <Tooltip content={<CustomTooltip />} />
+                        <Tooltip content={CustomTooltip} />
                         <Area
                             type="monotone"
                             dataKey="score"
