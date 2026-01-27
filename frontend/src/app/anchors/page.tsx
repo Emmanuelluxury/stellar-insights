@@ -122,14 +122,7 @@ export default function AnchorsPage() {
   >("reliability");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc">("desc");
 
-  const {
-    currentPage,
-    pageSize,
-    onPageChange,
-    onPageSizeChange,
-    startIndex,
-    endIndex,
-  } = usePagination(0); // We'll update totalItems later
+
 
   useEffect(() => {
     const fetchAnchors = async () => {
@@ -184,15 +177,16 @@ export default function AnchorsPage() {
       return sortOrder === "desc" ? bValue - aValue : aValue - bValue;
     });
 
-  const paginatedAnchors = filteredAndSortedAnchors.slice(startIndex, endIndex);
-
-  // Update usePagination with correct total items
   const {
-    currentPage: finalCurrentPage,
-    pageSize: finalPageSize,
-    onPageChange: finalOnPageChange,
-    onPageSizeChange: finalOnPageSizeChange,
+    currentPage,
+    pageSize,
+    onPageChange,
+    onPageSizeChange,
+    startIndex,
+    endIndex,
   } = usePagination(filteredAndSortedAnchors.length);
+
+  const paginatedAnchors = filteredAndSortedAnchors.slice(startIndex, endIndex);
 
   const getHealthStatusColor = (status: string) => {
     switch (status.toLowerCase()) {
@@ -584,10 +578,10 @@ export default function AnchorsPage() {
 
             <DataTablePagination
               totalItems={filteredAndSortedAnchors.length}
-              pageSize={finalPageSize}
-              currentPage={finalCurrentPage}
-              onPageChange={finalOnPageChange}
-              onPageSizeChange={finalOnPageSizeChange}
+              pageSize={pageSize}
+              currentPage={currentPage}
+              onPageChange={onPageChange}
+              onPageSizeChange={onPageSizeChange}
             />
           </div>
         )}

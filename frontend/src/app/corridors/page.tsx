@@ -1,12 +1,10 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import {
   TrendingUp,
   Search,
   Filter,
-  Loader,
   Droplets,
   CheckCircle2,
   AlertCircle,
@@ -24,7 +22,6 @@ import { usePagination } from "@/hooks/usePagination";
 import { DataTablePagination } from "@/components/ui/DataTablePagination";
 
 export default function CorridorsPage() {
-  const router = useRouter();
   const [corridors, setCorridors] = useState<CorridorMetrics[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
@@ -33,10 +30,6 @@ export default function CorridorsPage() {
   >("health_score");
 
   const {
-    currentPage,
-    pageSize,
-    onPageChange,
-    onPageSizeChange,
     startIndex,
     endIndex,
   } = usePagination(0);
@@ -48,7 +41,7 @@ export default function CorridorsPage() {
         try {
           const result = await getCorridors();
           setCorridors(result);
-        } catch (apiError) {
+        } catch {
           console.log("API not available, using mock data");
           // Generate mock corridors
           const mockCorridors: CorridorMetrics[] = [
@@ -232,7 +225,7 @@ export default function CorridorsPage() {
             <Filter className="w-5 h-5 text-gray-400" />
             <select
               value={sortBy}
-              onChange={(e) => setSortBy(e.target.value as any)}
+              onChange={(e) => setSortBy(e.target.value as "success_rate" | "health_score" | "liquidity")}
               className="bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg px-4 py-2 text-gray-900 dark:text-white appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               <option value="health_score">Sort by Health Score</option>

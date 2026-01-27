@@ -1,5 +1,5 @@
 import { IssuedAsset } from '@/lib/api';
-import { ArrowUpRight, ArrowDownRight, AlertTriangle } from 'lucide-react';
+import { ArrowUpRight, AlertTriangle } from 'lucide-react';
 import { usePagination } from '@/hooks/usePagination';
 import { DataTablePagination } from '@/components/ui/DataTablePagination';
 
@@ -18,7 +18,7 @@ export function IssuedAssetsTable({ assets }: IssuedAssetsTableProps) {
     };
 
     const formatPercent = (value: number) => {
-        return `${value.toFixed(1)}%`;
+        return `${value.toFixed(1)}% `;
     };
 
     const {
