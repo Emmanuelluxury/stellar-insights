@@ -1,14 +1,8 @@
 "use client";
 
-<<<<<<< HEAD
-import React, { useEffect, useState, useCallback, Suspense } from "react";
+import React, { useEffect, useState, useCallback, useMemo, Suspense } from "react";
 import { SkeletonMetricsCard, SkeletonChart } from '@/components/ui/Skeleton'
-=======
-import React, { useEffect, useState, useCallback, useMemo } from "react";
-import { SkeletonMetricsCard } from "@/components/ui/Skeleton";
 import { SettlementSpeedCard } from "@/components/dashboard/SettlementSpeedCard";
->>>>>>> de6d2c8756ed85a38ae33459341bfdbed9b43aa4
-import { KpiCard } from '@/components/dashboard/KpiCard'
 import { LiquidityDepthCard } from "@/components/dashboard/LiquidityDepthCard";
 import { CorridorHealthCard } from "@/components/dashboard/CorridorHealthCard";
 import { TopAssetsCard } from "@/components/dashboard/TopAssetsCard";
@@ -18,7 +12,6 @@ import {
   Activity,
   Wallet,
   Clock,
-  TrendingUp,
 } from "lucide-react";
 
 type Corridor = {
